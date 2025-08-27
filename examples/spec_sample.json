@@ -1,0 +1,37 @@
+{
+  "project_title": "demo_short",
+  "output": {
+    "fps": 25,
+    "resolution": "960x540",
+    "target_size_mb": 3
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "mode": "narration",
+      "duration_sec": 6,
+      "images": [
+        "examples/assets/scene1.jpg"
+      ],
+      "script_text": "This is a short demo clip created locally on macOS.",
+      "voice": {
+        "engine": "piper",
+        "voice": "D:/ai-shorts/models/piper/en_US-amy-low.onnx"
+      }
+    },
+    {
+      "id": "s2",
+      "mode": "talking_head",
+      "duration_sec": 8,
+      "portrait": "examples/assets/portrait.mp4",
+      "script_text": "Here is a brief talking-head message generated with a local model.",
+      "voice": {
+        "engine": "piper",
+        "voice": "D:/ai-shorts/models/piper/en_US-amy-low.onnx"
+      },
+      "lipsync_engine": "wav2lip"
+    }
+  ],
+  "subtitles": true,
+  "watermark": "AI-generated"
+}

@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+  <head><meta charset="utf-8"><title>AI Shorts Generator</title></head>
+  <body>
+    <h1>AI Shorts Generator</h1>
+    <form action="/generate" method="post" enctype="multipart/form-data">
+      <p>Upload spec.json: <input type="file" name="spec" accept=".json"></p>
+      <button type="submit">Generate</button>
+    </form>
+    <p>After starting, poll /outputs/&lt;job_id&gt; to see files.</p>
+  </body>
+</html>

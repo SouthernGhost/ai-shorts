@@ -1,0 +1,8 @@
+1
+00:00:00,000 --> 00:00:02,046
+This is a short demo clip created locally
+
+2
+00:00:02,096 --> 00:00:04,142
+on macOS.
+
