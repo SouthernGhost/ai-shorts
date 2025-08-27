@@ -11,13 +11,10 @@ def generate_talking_head(portrait_path, audio_wav, out_mp4, engine="wav2lip"):
     if engine.lower() == "wav2lip":
         repo = os.getenv("WAV2LIP_PATH", None)
         if repo and os.path.exists(repo):
-            # Use the Wav2Lip virtual environment's python interpreter
-            wav2lip_venv_python = os.path.join(repo, ".venv", "Scripts", "python.exe")
-            if not os.path.exists(wav2lip_venv_python):
-                raise RuntimeError(f"Wav2Lip virtual environment Python executable not found: {wav2lip_venv_python}")
-
+            # Example call (this depends on your local Wav2Lip setup)
+            # Adjust paths/flags to match your cloned repo.
             cmd = [
-                wav2lip_venv_python, os.path.join(repo, "inference.py"),
+                "python", os.path.join(repo, "inference.py"),
                 "--checkpoint_path", os.path.join(repo, "checkpoints", "Wav2Lip-SD-GAN.pt"),
                 "--face", portrait_path,
                 "--audio", audio_wav,
