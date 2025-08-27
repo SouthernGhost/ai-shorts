@@ -5,3 +5,4 @@
 .*onnx
 runs/
 __pycache__
+Wav2Lip/
