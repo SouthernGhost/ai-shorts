@@ -1,1 +1,7 @@
 *.pt
+*.lock
+*.wav
+*.mp4
+.*onnx
+runs/
+__pycache__

@@ -1,8 +1,0 @@
-1
-00:00:00,000 --> 00:00:02,102
-This is a short demo clip created locally
-
-2
-00:00:02,152 --> 00:00:04,254
-on macOS.
-
