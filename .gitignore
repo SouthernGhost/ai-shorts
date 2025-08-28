@@ -5,4 +5,4 @@
 *.mp4
 .*onnx
 runs/
-__pycache__
+*__pycache__*
