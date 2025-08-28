@@ -1,6 +1,6 @@
-import cv2, numpy as np, math, os
+import cv2, numpy as np, math, os, subprocess
 
-def ken_burns_clip(images, out_path, duration_sec=6, fps=25, size=(960,540)):
+def ken_burns_clip(images, out_path:str, audio_file:str, duration_sec=6, fps=25, size=(960,540)):
     """
     Simple pan/zoom montage from a list of image paths.
     - images: list of image file paths
@@ -44,5 +44,10 @@ def ken_burns_clip(images, out_path, duration_sec=6, fps=25, size=(960,540)):
     for _ in range(max(0, total_frames - written)):
         writer.write(frame)
 
+    out_path_audio = out_path.strip().split(".mp4")[0]+"_audio.mp4"   
     writer.release()
+    cmd = ["ffmpeg", "-i", out_path, "-i", audio_file, "-c:v", "copy", "-c:a", "aac", "-shortest", out_path_audio]
+    subprocess.run(cmd, check=True)
+    os.remove(out_path)
+    os.rename(out_path_audio, out_path)   
     return out_path

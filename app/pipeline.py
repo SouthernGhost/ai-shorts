@@ -30,10 +30,10 @@ def run_project(spec_path, out_path, workdir):
         synthesize(script_text, audio_wav, engine=voice.get("engine","piper"), voice=voice.get("voice"))
 
         # 2) Video per mode
-        raw_mp4 = str(f"{tmp}/{sid}_raw.mp4")
+        raw_mp4 = str(tmp / f"{sid}_raw.mp4")
         if mode == "narration":
             images = scene.get("images", [])
-            ken_burns_clip(images, raw_mp4, duration_sec=duration, fps=fps, size=(width, height))
+            ken_burns_clip(images, raw_mp4, audio_wav,duration_sec=duration, fps=fps, size=(width, height))
         elif mode == "talking_head":
             portrait = scene["portrait"]
             engine = scene.get("lipsync_engine", "wav2lip")
@@ -46,7 +46,7 @@ def run_project(spec_path, out_path, workdir):
         if spec.get("subtitles", False) or watermark:
             srt = None
             if spec.get("subtitles", False):
-                srt = str(f"{tmp}/{sid}.srt")
+                srt = str(tmp / f"{sid}.srt")
                 write_srt(script_text, audio_wav, srt)
             burned = str(tmp / f"{sid}_burned.mp4")
             burn_subtitles_and_watermark(raw_mp4, srt, watermark, burned)
