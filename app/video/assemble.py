@@ -39,15 +39,77 @@ def write_srt(text:str, audio_wav:str, srt_path:str):
             f.write(f"{i}\n{fmt(start)} --> {fmt(max(start+0.1, end))}\n{chunk}\n\n")
     return srt_path
 
+
 def concat_videos_ffmpeg(mp4_list, out_path):
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    processed_files = []
+
+    # Define standardized parameters for re-encoding
+    standard_video_codec = "libx264"
+    standard_audio_codec = "aac"
+    standard_framerate = "30"
+    standard_sample_rate = "44100"
+
+    for video in mp4_list:
+        # Check if video has audio
+        has_audio = subprocess.run(
+            ["ffprobe", "-v", "error", "-select_streams", "a", "-show_entries",
+             "stream=codec_type", "-of", "csv=p=0", video],
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
+        ).stdout.strip() != ""
+
+        if not has_audio:
+            # Get video duration
+            duration_cmd = [
+                "ffprobe", "-v", "error", "-show_entries", "format=duration",
+                "-of", "default=noprint_wrappers=1:nokey=1", video
+            ]
+            duration = subprocess.run(duration_cmd, stdout=subprocess.PIPE,
+                                      stderr=subprocess.PIPE, text=True).stdout.strip()
+
+            # Add silent audio
+            temp_video = tempfile.NamedTemporaryFile(delete=False, suffix=".mp4").name
+            subprocess.run([
+                "ffmpeg", "-y", "-i", video,
+                "-f", "lavfi", "-i", f"anullsrc=channel_layout=stereo:sample_rate={standard_sample_rate}:duration={duration}",
+                "-c:v", standard_video_codec, "-r", standard_framerate,
+                "-c:a", standard_audio_codec, "-ar", standard_sample_rate,
+                "-vsync", "cfr",
+                "-map", "0:v", "-map", "1:a",
+                temp_video
+            ], check=True)
+            processed_files.append(temp_video)
+        else:
+            # Re-encode video to standardized format to ensure consistency
+            temp_video = tempfile.NamedTemporaryFile(delete=False, suffix=".mp4").name
+            subprocess.run([
+                "ffmpeg", "-y", "-i", video,
+                "-c:v", standard_video_codec, "-r", standard_framerate,
+                "-c:a", standard_audio_codec, "-ar", standard_sample_rate,
+                "-vsync", "cfr",
+                temp_video
+            ], check=True)
+            processed_files.append(temp_video)
+
+    # Create concat list
     with tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False) as tf:
-        for p in mp4_list:
-            tf.write(f"file '{os.path.abspath(p)}'\n")
+        for p in processed_files:
+            tf.write(f"file '{os.path.abspath(p).replace('\\','/')}'\n")
         list_path = tf.name
-    cmd = ["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", list_path,
-           "-c", "copy", out_path]
-    subprocess.run(cmd, check=True)
+
+    # Concatenate all videos
+    subprocess.run([
+        "ffmpeg", "-y", "-f", "concat", "-safe", "0",
+        "-i", list_path, "-c:v", "libx264", "-c:a", "aac",
+        "-movflags", "faststart", out_path
+    ], check=True)
+
+    # Cleanup temporary files
+    for p in processed_files:
+        if p not in mp4_list:  # delete only generated ones
+            os.remove(p)
+    os.remove(list_path)
+
     return out_path
 
 def burn_subtitles_and_watermark(in_mp4, srt_path, watermark_text, out_mp4):
