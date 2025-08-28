@@ -2,7 +2,6 @@ import argparse, pathlib, os
 from app.pipeline import run_project
 from app.utils.io import ensure_dir
 
-print(os.environ['PIPER_VOICE'])
 
 def main():
     ap = argparse.ArgumentParser()
