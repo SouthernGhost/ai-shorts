@@ -1,8 +1,8 @@
 *.pt
+*.pth
 *.lock
 *.wav
 *.mp4
 .*onnx
 runs/
 __pycache__
-Wav2Lip/
