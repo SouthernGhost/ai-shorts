@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, jsonify
-import os, uuid, pathlib, subprocess
+import os, uuid, pathlib, subprocess, sys
 
 app = Flask(__name__)
 
@@ -19,7 +19,8 @@ def generate():
 
     out_mp4 = workdir/"out.mp4"
     # Fire-and-forget (no progress piping in this minimal version)
-    subprocess.Popen(["python", "generate.py", "--spec", str(spec_fp), "--out", str(out_mp4), "--workdir", str(workdir)])
+    python_executable = sys.executable
+    subprocess.Popen([python_executable, "generate.py", "--spec", str(spec_fp), "--out", str(out_mp4), "--workdir", str(workdir)])
 
     return jsonify({"job_id": job_id, "out": str(out_mp4)})
 
