@@ -13,7 +13,7 @@ def generate_talking_head(portrait_path, audio_wav, out_mp4, engine="wav2lip"):
         if repo and os.path.exists(repo):
             # Example call (this depends on your local Wav2Lip setup)
             # Adjust paths/flags to match your cloned repo.
-            cmd = [
+            cmd = ["poetry", "run",
                 "python", os.path.join(repo, "inference.py"),
                 "--checkpoint_path", os.path.join(repo, "checkpoints", "Wav2Lip-SD-GAN.pt"),
                 "--face", portrait_path,
@@ -28,7 +28,7 @@ def generate_talking_head(portrait_path, audio_wav, out_mp4, engine="wav2lip"):
         repo = os.getenv("SADTALKER_PATH", None)
         if repo and os.path.exists(repo):
             # Example call (adjust to your local SadTalker CLI)
-            cmd = [
+            cmd = ["poetry", "run",
                 "python", os.path.join(repo, "inference.py"),
                 "--source_image", portrait_path,
                 "--driven_audio", audio_wav,
