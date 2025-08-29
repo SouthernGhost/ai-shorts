@@ -3,9 +3,10 @@
 *.lock
 *.wav
 *.mp4
-.*onnx
 spec*.json
 runs/
 *pycache*
 *.log*
 *.lock
+models/piper/*onnx*
+tests
