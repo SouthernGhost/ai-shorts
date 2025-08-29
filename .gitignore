@@ -4,5 +4,6 @@
 *.wav
 *.mp4
 .*onnx
+spec*.json
 runs/
-*__pycache__*
+*pycache*
