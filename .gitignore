@@ -8,3 +8,4 @@ spec*.json
 runs/
 *pycache*
 *.log*
+*.lock
