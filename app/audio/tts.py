@@ -66,4 +66,4 @@ def synthesize(text:str, out_wav:str, engine:str="piper", voice:str=None):
             except Exception as e:
                 print(f"[TTS] macOS say fallback failed: {e}", file=sys.stderr)
 
-    raise RuntimeError("No TTS path available. Install Piper + voice model or use macOS 'say'.")
+    raise RuntimeError("No TTS path available. Install Piper + voice model, Suno's Bark or use macOS 'say'.")
