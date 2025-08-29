@@ -1,5 +1,7 @@
 import os, subprocess, math, tempfile, wave
 import pathlib
+from pathlib import Path
+import soundfile
 
 def audio_duration_sec(wav_path:str) -> float:
     with wave.open(wav_path, 'rb') as wf:
@@ -94,7 +96,7 @@ def concat_videos_ffmpeg(mp4_list, out_path):
     # Create concat list
     with tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False) as tf:
         for p in processed_files:
-            tf.write(f"file '{os.path.abspath(p).replace('\\','/')}'\n")
+                tf.write(f"file '{Path(p).resolve().as_posix()}'\n")
         list_path = tf.name
 
     # Concatenate all videos
