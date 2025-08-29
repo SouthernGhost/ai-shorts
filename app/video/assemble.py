@@ -1,13 +1,11 @@
 import os, subprocess, math, tempfile, wave
 import pathlib
 from pathlib import Path
-import soundfile
+import soundfile as sf
 
-def audio_duration_sec(wav_path:str) -> float:
-    with wave.open(wav_path, 'rb') as wf:
-        frames = wf.getnframes()
-        rate = wf.getframerate()
-        return frames / float(rate)
+def audio_duration_sec(wav_path: str) -> float:
+    data, samplerate = sf.read(wav_path)
+    return len(data) / float(samplerate)
 
 def write_srt(text:str, audio_wav:str, srt_path:str):
     dur = max(0.1, audio_duration_sec(audio_wav))
