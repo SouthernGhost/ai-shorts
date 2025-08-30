@@ -2,6 +2,7 @@
 
 **MVP features**: JSON spec -> local TTS -> narration montage (Ken Burns) or *stub* talking-head (Wav2Lip/SadTalker) -> subtitles/watermark -> compression (2–5 MB).
 
+Make sure you have Python 3.11.9 installed as Wave2Lip and Suno's Bark are best compatible with PyTorch 2.5.1 which is available for this version of python.
 ## Quick start (macOS)
 ```bash
 cd ai_shorts
@@ -15,6 +16,37 @@ source .venv/bin/activate
 
 # Generate from sample spec (will only fully work for narration scene s1)
 python generate.py --spec examples/spec_sample.json --out runs/demo/out.mp4 --workdir runs/demo
+```
+
+## Poetry Environment Setup
+This project can also be set up with Poetry package manager. This is mostly helpful if you're on Windows.
+```python
+pip install poetry
+```
+Navigate to the project folder and in terminal:
+```python
+poetry install
+```
+This will install required dependencies. You will have to install PyTorch yourself after this. The project is best compatible with PyTorch 2.5.1.
+```python
+poetry run pip install torch==2.5.1 torchvision torchaudio==2.5.1
+```
+For an Nvidia GPU compatible setup, you will have to install PyTorch 2.5.1 with Cuda 12.4.
+```python
+poetry run pip install torch==2.5.1 torchvision --index-url https://download.pytorch.org/whl/cu124
+```
+This will setup PyTorch with CUDA binaries for Nvidia GPU acceleration on Windows and Linux.
+After installation, run:
+```python
+poetry env activate
+```
+### Suno's Bark Setup
+You can also use Suno's Bark instead of Piper-TTS for speech generation. To install Bark from their GitHub repo:
+```python
+pip install --no-deps git+https://github.com/suno-ai/bark.git
+#--no-deps will prevent pip from upgrading PyTorch version.
+#Or install with poetry:
+poetry run pip install --no-deps git+https://github.com/suno-ai/bark.git
 ```
 
 ### Talking-head note
