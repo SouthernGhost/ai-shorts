@@ -34,7 +34,8 @@ def synthesize(text:str, out_wav:str, engine:str="piper", voice:str=None):
             cmd = [
                 "poetry", "run", "python", "-m", bark_bin,
                 "--text", text,
-                "--output_filename", out_wav
+                "--output_filename", out_wav,
+                "--history_prompt", voice
             ]
             try:
                 subprocess.run(cmd, input=text.encode("utf-8"), check=True, env=env)
