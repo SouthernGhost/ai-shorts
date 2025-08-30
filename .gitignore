@@ -9,4 +9,5 @@ runs/
 *.log*
 *.lock
 models/piper/*onnx*
+models/bark/*.npz
 tests
