@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, jsonify
 import os, uuid, pathlib, subprocess, sys
+import datetime
 
 app = Flask(__name__)
 
@@ -11,7 +12,7 @@ def index():
 def generate():
     if "spec" not in request.files:
         return "Upload a spec.json", 400
-    job_id = str(uuid.uuid4())[:8]
+    job_id = datetime.datetime.now().strftime("%d-%m-%Y_%H-%M-%S")
     workdir = pathlib.Path(f"runs/{job_id}")
     workdir.mkdir(parents=True, exist_ok=True)
     spec_fp = workdir/"spec.json"
