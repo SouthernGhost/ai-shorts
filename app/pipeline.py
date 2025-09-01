@@ -33,7 +33,7 @@ def run_project(spec_path, out_path, workdir):
         raw_mp4 = str(tmp / f"{sid}_raw.mp4")
         if mode == "narration":
             images = scene.get("images", [])
-            ken_burns_clip(images, raw_mp4, audio_wav,duration_sec=duration, fps=fps, size=(width, height))
+            ken_burns_clip(images, raw_mp4, audio_wav, fps=fps, size=(width, height))
         elif mode == "talking_head":
             portrait = scene["portrait"]
             engine = scene.get("lipsync_engine", "wav2lip")

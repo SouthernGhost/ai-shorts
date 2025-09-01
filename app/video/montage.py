@@ -1,13 +1,14 @@
 import cv2, numpy as np, math, os, subprocess
+from app.video.assemble import audio_duration_sec
 
-def ken_burns_clip(images, out_path:str, audio_file:str, duration_sec=6, fps=25, size=(960,540)):
+def ken_burns_clip(images, out_path:str, audio_file:str, fps=25, size=(960,540)):
     """
     Simple pan/zoom montage from a list of image paths.
     - images: list of image file paths
     - out_path: output video path
     """
     w, h = size
-    total_frames = int(duration_sec * fps)
+    total_frames = int(audio_duration_sec(audio_file) * fps)
     if not images:
         raise ValueError("No images provided for montage.")
     # Equal segment per image
