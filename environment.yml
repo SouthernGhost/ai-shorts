@@ -1,0 +1,38 @@
+name: ai-shorts
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.11.*
+  - pip
+  - numpy<2
+  - pytorch=2.5.1
+  - torchvision
+  - pytorch-cuda=12.4
+  - scipy
+  - flask
+  - psutil
+  - pyyaml
+  - tqdm
+  - boto3
+  - funcy
+  - librosa
+  - soundfile
+  - einops
+  - timm
+  - sentencepiece
+  - imageio
+  - av
+  - pip:
+      - diffusers>=0.28.2
+      - transformers>=4.47.2,<4.52.0
+      - huggingface-hub>=0.20.0
+      - python-speech-features==0.6
+      - piper-tts==1.3.0
+      - opencv-python==4.12.0.88
+      - iou==0.1.0
+      - imageio[ffmpeg]
+      - tokenizers>=0.22.0,<0.23.0
