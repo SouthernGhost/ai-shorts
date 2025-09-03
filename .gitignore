@@ -7,6 +7,5 @@ runs/
 *pycache*
 *.log*
 *.lock
-models/piper/*onnx*
-models/bark/*.npz
+models/piper/*.onnx
 tests/
