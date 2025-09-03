@@ -3,11 +3,10 @@
 *.lock
 *.wav
 *.mp4
-spec*.json
 runs/
 *pycache*
 *.log*
 *.lock
 models/piper/*onnx*
 models/bark/*.npz
-tests
+tests/

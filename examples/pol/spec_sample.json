@@ -1,0 +1,25 @@
+{
+  "project_title": "demo_short",
+  "output": {
+    "fps": 25,
+    "resolution": "960x540",
+    "target_size_mb": 3
+  },
+  "scenes": [
+    {
+      "id": "s0",
+      "mode": "talking_head",
+      "images": [
+        "examples/f1/assets/donald.jpg"
+      ],
+      "script_text": "Innovation drives progress, shaping industries and transforming everyday life. From artificial intelligence to renewable energy, technology is evolving at an unprecedented pace. Businesses are adopting smart automation, while researchers explore new frontiers in science and medicine. Collaboration across diverse fields fuels groundbreaking discoveries, emphasizing the importance of creativity and problem-solving. As the digital world expands, ethical considerations become crucial, ensuring responsible development. Future success will depend on adaptability, lifelong learning, and a willingness to embrace change. By combining knowledge, innovation, and sustainable practices, society can build a smarter, more connected world for generations to come. Progress never stops.",
+      "voice": {
+        "engine": "bark",
+        "voice": "models/bark/en_speaker_1.npz"
+      },
+      "lipsync_engine": "wav2lip"
+    }
+  ],
+  "subtitles": true,
+  "watermark": "AI-generated"
+}

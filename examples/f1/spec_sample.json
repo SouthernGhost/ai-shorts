@@ -1,0 +1,114 @@
+{
+  "project_title": "demo_short",
+  "output": {
+    "fps": 25,
+    "resolution": "960x540",
+    "target_size_mb": 3
+  },
+  "scenes": [
+    {
+      "id": "s0",
+      "mode": "narration",
+      "images": [
+        "examples/f1/assets/donald.jpg"
+      ],
+      "script_text": "Hello, hi!",
+      "voice": {
+        "engine": "piper",
+        "voice": "models/piper/en_US-ryan-high.onnx"
+      }
+    },
+    {
+      "id": "s1",
+      "mode": "narration",
+      "duration_sec": 100,
+      "images": [
+        "examples/f1/assets/portrait.jpg"
+      ],
+      "script_text": "This is a short demo clip created locally on macOS and narrated by Piper.",
+      "voice": {
+        "engine": "piper",
+        "voice": "models/piper/en_US-ryan-high.onnx"
+      }
+    },
+    {
+      "id": "s2",
+      "mode": "talking_head",
+      "portrait": "examples/f1/assets/portrait.jpg",
+      "script_text": "And now I am talking with Bark text to speech model.",
+      "voice": {
+        "engine": "bark",
+        "voice": "models/bark/en_speaker_8.npz"
+      },
+      "lipsync_engine": "wav2lip"
+    },
+    {
+      "id": "s3",
+      "mode": "talking_head",
+      "portrait": "examples/f1/assets/portrait2.jpg",
+      "script_text": "Before we dive deep into the story of my life, let me introduce myself.",
+      "voice": {
+        "engine": "bark",
+        "voice": "models/bark/en_speaker_1.npz"
+      },
+      "lipsync_engine": "wav2lip"
+    },
+    {
+      "id": "s4",
+      "mode": "talking_head",
+      "portrait": "examples/f1/assets/portrait2.jpg",
+      "script_text": "I am Charles Leclerc, and I am a Formula One driver and I drive for Ferrari.",
+      "voice": {
+        "engine": "bark",
+        "voice": "models/bark/en_speaker_1.npz"
+      },
+      "lipsync_engine": "wav2lip"
+    },
+    {
+      "id": "s5",
+      "mode": "talking_head",
+      "portrait": "examples/f1/assets/portrait2.jpg",
+      "script_text": "My journey in motorsport began with karting at the age of six, where I quickly demonstrated natural talent and a passion for racing.",
+      "voice": {
+        "engine": "bark",
+        "voice": "models/bark/en_speaker_1.npz"
+      },
+      "lipsync_engine": "wav2lip"
+    },
+    {
+      "id": "s6",
+      "mode": "talking_head",
+      "portrait": "examples/f1/assets/portrait2.jpg",
+      "script_text": "In 2014, I moved up to single-seaters, competing in the Formula Renault 3.5 Series, and by 2015, I became the first person to win championships in three different categories: Formula Renault, Formula 3, and Formula 2.",
+      "voice": {
+        "engine": "bark",
+        "voice": "models/bark/en_speaker_1.npz"
+      },
+      "lipsync_engine": "wav2lip"
+    },
+    {
+      "id": "s7",
+      "mode": "talking_head",
+      "portrait": "examples/f1/assets/portrait2.jpg",
+      "script_text": "My exceptional talent led me to the pinnacle of motorsport, Formula One, where I debuted with Ferrari in 2019. For five years, I tried to win my home race for five years, but unfortunate circumstances and my own mistakes prevented me from achieving this goal.",
+      "voice": {
+        "engine": "bark",
+        "voice": "models/bark/en_speaker_1.npz"
+      },
+      "lipsync_engine": "wav2lip"
+    },
+    {
+      "id": "s8",
+      "mode": "talking_head",
+      "portrait": "examples/f1/assets/portrait2.jpg",
+      "script_text": "In 2024, I finally won my home race and it was a dream come true.",
+      "voice": {
+        "engine": "bark",
+        "voice": "models/bark/en_speaker_1.npz"
+      },
+      "lipsync_engine": "wav2lip"
+    }
+  ],
+  "subtitles": true,
+  "watermark": "AI-generated"
+}
