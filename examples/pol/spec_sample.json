@@ -8,18 +8,69 @@
   "scenes": [
     {
       "id": "s0",
-      "mode": "talking_head",
+      "mode": "narration",
+      "portrait": "examples/pol/assets/donald0.jpg",
       "images": [
-        "examples/f1/assets/donald.jpg"
+        "examples/pol/assets/donald0.jpg"
       ],
-      "script_text": "Innovation drives progress, shaping industries and transforming everyday life. From artificial intelligence to renewable energy, technology is evolving at an unprecedented pace. Businesses are adopting smart automation, while researchers explore new frontiers in science and medicine. Collaboration across diverse fields fuels groundbreaking discoveries, emphasizing the importance of creativity and problem-solving. As the digital world expands, ethical considerations become crucial, ensuring responsible development. Future success will depend on adaptability, lifelong learning, and a willingness to embrace change. By combining knowledge, innovation, and sustainable practices, society can build a smarter, more connected world for generations to come. Progress never stops.",
+      "script_text": "Donald John Trump, born June 14, nineteen forty six, is an American politician and businessman who is the 47th president of the United States currently serving his second term.",
+      "voice": {
+        "engine": "piper",
+        "voice": "models/piper/en_US-ryan-high.onnx"
+      },
+      "lipsync_engine": "wav2lip"
+    },
+    {
+      "id": "s1",
+      "mode": "narration",
+      "portrait": "examples/pol/assets/donald2.jpg",
+      "images": [
+        "examples/pol/assets/donald2.jpg"
+      ],
+      "script_text": "He is serving his second term as the president after winning the 2024 presidential elections.",
+      "voice": {
+        "engine": "piper",
+        "voice": "models/piper/en_US-ryan-high.onnx"
+      },
+      "lipsync_engine": "wav2lip"
+    },
+    {
+      "id": "s2",
+      "mode": "narration",
+      "portrait": "examples/pol/assets/jdvance1.jpg",
+      "images": [
+        "examples/pol/assets/jdvance1.jpg"
+      ],
+      "script_text": "Jamed David Vance is serving as the Vice President of the United States.",
+      "voice": {
+        "engine": "piper",
+        "voice": "models/piper/en_US-ryan-high.onnx"
+      },
+        "lipsync_engine": "wav2lip"
+    },
+    {
+      "id": "s3",
+      "mode": "talking_head",
+      "portrait": "examples/pol/assets/jdvance0.jpg",
+      "script_text": "Preident Trump's health is failing and God forbid if somethng happens to him, I am ready to takeover.",
       "voice": {
         "engine": "bark",
         "voice": "models/bark/en_speaker_1.npz"
       },
-      "lipsync_engine": "wav2lip"
+        "lipsync_engine": "wav2lip"
+    },
+    {
+      "id": "s4",
+      "mode": "talking_head",
+      "portrait": "examples/pol/assets/donald1.jpg",
+      "script_text": "JD, what are you talking about? I am perfectly well. Stop plotting behind my back and get back to work.",
+      "voice": {
+        "engine": "bark",
+        "voice": "models/bark/en_speaker_6.npz"
+      },
+        "lipsync_engine": "wav2lip"
     }
   ],
-  "subtitles": true,
-  "watermark": "AI-generated"
+  "subtitles": false,
+  "watermark": ""
 }
