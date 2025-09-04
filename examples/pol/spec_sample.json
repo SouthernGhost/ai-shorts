@@ -2,7 +2,7 @@
   "project_title": "demo_short",
   "output": {
     "fps": 25,
-    "resolution": "960x540",
+    "resolution": "540x960",
     "target_size_mb": 3
   },
   "scenes": [
@@ -37,11 +37,11 @@
     {
       "id": "s2",
       "mode": "narration",
-      "portrait": "examples/pol/assets/jdvance1.jpg",
+      "portrait": "examples/pol/assets/jdvance1c.jpg",
       "images": [
-        "examples/pol/assets/jdvance1.jpg"
+        "examples/pol/assets/jdvance1c.jpg"
       ],
-      "script_text": "Jamed David Vance is serving as the Vice President of the United States.",
+      "script_text": "James David Vance is serving as the Vice President of the United States.",
       "voice": {
         "engine": "piper",
         "voice": "models/piper/en_US-ryan-high.onnx"
@@ -52,21 +52,21 @@
       "id": "s3",
       "mode": "talking_head",
       "portrait": "examples/pol/assets/jdvance0.jpg",
-      "script_text": "Preident Trump's health is failing and God forbid if somethng happens to him, I am ready to takeover.",
+      "script_text": "President Trump's health is failing and God forbid if somethng happens to him, I am ready to takeover.",
       "voice": {
         "engine": "bark",
-        "voice": "models/bark/en_speaker_1.npz"
+        "voice": "models/bark/en_speaker_6.npz"
       },
         "lipsync_engine": "wav2lip"
     },
     {
       "id": "s4",
       "mode": "talking_head",
-      "portrait": "examples/pol/assets/donald1.jpg",
+      "portrait": "examples/pol/assets/donald3c.jpg",
       "script_text": "JD, what are you talking about? I am perfectly well. Stop plotting behind my back and get back to work.",
       "voice": {
         "engine": "bark",
-        "voice": "models/bark/en_speaker_6.npz"
+        "voice": "models/bark/en_speaker_8.npz"
       },
         "lipsync_engine": "wav2lip"
     }
