@@ -40,7 +40,7 @@ def write_srt(text:str, audio_wav:str, srt_path:str):
     return srt_path
 
 
-def concat_videos_ffmpeg(mp4_list, out_path):
+def concat_videos_ffmpeg(mp4_list, out_path, target_width=960, target_height=540):
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     processed_files = []
 
@@ -67,11 +67,12 @@ def concat_videos_ffmpeg(mp4_list, out_path):
             duration = subprocess.run(duration_cmd, stdout=subprocess.PIPE,
                                       stderr=subprocess.PIPE, text=True).stdout.strip()
 
-            # Add silent audio
+            # Add silent audio with aspect ratio preservation
             temp_video = tempfile.NamedTemporaryFile(delete=False, suffix=".mp4").name
             subprocess.run([
                 "ffmpeg", "-y", "-i", video,
                 "-f", "lavfi", "-i", f"anullsrc=channel_layout=stereo:sample_rate={standard_sample_rate}:duration={duration}",
+                "-vf", f"scale={target_width}:{target_height}:force_original_aspect_ratio=increase,crop={target_width}:{target_height}",
                 "-c:v", standard_video_codec, "-r", standard_framerate,
                 "-c:a", standard_audio_codec, "-ar", standard_sample_rate,
                 "-vsync", "cfr",
@@ -80,10 +81,11 @@ def concat_videos_ffmpeg(mp4_list, out_path):
             ], check=True)
             processed_files.append(temp_video)
         else:
-            # Re-encode video to standardized format to ensure consistency
+            # Re-encode with aspect ratio preservation
             temp_video = tempfile.NamedTemporaryFile(delete=False, suffix=".mp4").name
             subprocess.run([
                 "ffmpeg", "-y", "-i", video,
+                "-vf", f"scale={target_width}:{target_height}:force_original_aspect_ratio=increase,crop={target_width}:{target_height}",
                 "-c:v", standard_video_codec, "-r", standard_framerate,
                 "-c:a", standard_audio_codec, "-ar", standard_sample_rate,
                 "-vsync", "cfr",

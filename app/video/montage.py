@@ -24,18 +24,34 @@ def ken_burns_clip(images, out_path:str, audio_file:str, fps=25, size=(960,540))
             # fallback: blank frame
             img = np.zeros((h,w,3), dtype=np.uint8)
         ih, iw = img.shape[:2]
-        # We'll create a slight zoom-in and pan
+        current_aspect = iw / ih
+        target_aspect = w / h
+
         for f in range(seg_frames):
             t = f / max(1, seg_frames-1)
             # zoom from 1.05 -> 1.15
             zoom = 1.05 + 0.1 * t
-            crop_w = int(iw / zoom)
-            crop_h = int(ih / zoom)
+
+            # Calculate crop dimensions maintaining aspect ratio to cover the target
+            if current_aspect > target_aspect:
+                # Image is wider than target aspect ratio, scale to target height and crop width
+                crop_h_scaled = int(ih / zoom)
+                crop_w_scaled = int(crop_h_scaled * target_aspect)
+            else:
+                # Image is taller than target aspect ratio, scale to target width and crop height
+                crop_w_scaled = int(iw / zoom)
+                crop_h_scaled = int(crop_w_scaled / target_aspect)
+
+            # Ensure crop dimensions are within image bounds
+            crop_w = min(crop_w_scaled, iw)
+            crop_h = min(crop_h_scaled, ih)
+
             # pan from center slightly to right/down
             cx = int((iw - crop_w) * (0.5 + 0.1 * t))
             cy = int((ih - crop_h) * (0.5 + 0.1 * t))
             cx = max(0, min(cx, iw - crop_w))
             cy = max(0, min(cy, ih - crop_h))
+
             crop = img[cy:cy+crop_h, cx:cx+crop_w]
             frame = cv2.resize(crop, (w, h), interpolation=cv2.INTER_CUBIC)
             writer.write(frame)

@@ -37,7 +37,7 @@ def run_project(spec_path, out_path, workdir):
         elif mode == "talking_head":
             portrait = scene["portrait"]
             engine = scene.get("lipsync_engine", "wav2lip")
-            generate_talking_head(portrait, audio_wav, raw_mp4, engine=engine)
+            generate_talking_head(portrait, audio_wav, raw_mp4, engine=engine, target_width=width, target_height=height)
         else:
             raise ValueError(f"Unknown scene mode: {mode}")
 
@@ -56,7 +56,7 @@ def run_project(spec_path, out_path, workdir):
 
     # 4) Concat scenes
     merged = str(tmp / "merged.mp4")
-    concat_videos_ffmpeg(scene_mp4s, merged)
+    concat_videos_ffmpeg(scene_mp4s, merged, target_width=width, target_height=height)
 
     # 5) Compress to target
     normalize_and_compress(merged, out_path, width=width, height=height, fps=fps, target_size_mb=target_size_mb, two_pass=True)

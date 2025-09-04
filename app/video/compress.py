@@ -21,7 +21,7 @@ def normalize_and_compress(in_mp4, out_mp4, width=960, height=540, fps=25, targe
         # Pass 1
         cmd1 = [
             "ffmpeg", "-y", "-i", in_mp4,
-            "-vf", f"scale={width}:{height}:force_original_aspect_ratio=decrease",
+            "-vf", f"scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height}",
             "-r", str(fps),
             "-c:v", "libx264", "-b:v", f"{b_v}k",
             "-pass", "1", "-an", "-f", "mp4", os.devnull
@@ -30,7 +30,7 @@ def normalize_and_compress(in_mp4, out_mp4, width=960, height=540, fps=25, targe
         # Pass 2
         cmd2 = [
             "ffmpeg", "-y", "-i", in_mp4,
-            "-vf", f"scale={width}:{height}:force_original_aspect_ratio=decrease",
+            "-vf", f"scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height}",
             "-r", str(fps),
             "-c:v", "libx264", "-b:v", f"{b_v}k",
             "-pass", "2", "-c:a", "aac", "-b:a", "64k", "-ac", "1",
@@ -40,7 +40,7 @@ def normalize_and_compress(in_mp4, out_mp4, width=960, height=540, fps=25, targe
     else:
         cmd = [
             "ffmpeg", "-y", "-i", in_mp4,
-            "-vf", f"scale={width}:{height}:force_original_aspect_ratio=decrease",
+            "-vf", f"scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height}",
             "-r", str(fps),
             "-c:v", "libx264", "-preset", "veryfast", "-crf", "30",
             "-profile:v", "high", "-pix_fmt", "yuv420p",
