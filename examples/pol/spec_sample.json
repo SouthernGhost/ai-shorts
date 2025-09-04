@@ -62,7 +62,7 @@
     {
       "id": "s4",
       "mode": "talking_head",
-      "portrait": "examples/pol/assets/donald3c.jpg",
+      "portrait": "examples/pol/assets/donald4c.jpg",
       "script_text": "JD, what are you talking about? I am perfectly well. Stop plotting behind my back and get back to work.",
       "voice": {
         "engine": "bark",

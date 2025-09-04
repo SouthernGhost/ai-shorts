@@ -1,0 +1,34 @@
+{
+  "project_title": "demo_short",
+  "output": {
+    "fps": 25,
+    "resolution": "540x960",
+    "target_size_mb": 3
+  },
+  "scenes": [
+    {
+      "id": "s3",
+      "mode": "talking_head",
+      "portrait": "examples/pol/assets/jdvance0.jpg",
+      "script_text": "President Trump's health is failing and God forbid if somethng happens to him, I am ready to takeover.",
+      "voice": {
+        "engine": "bark",
+        "voice": "models/bark/en_speaker_6.npz"
+      },
+        "lipsync_engine": "wav2lip"
+    },
+    {
+      "id": "s4",
+      "mode": "talking_head",
+      "portrait": "examples/pol/assets/donald5c.jpg",
+      "script_text": "JD, what are you talking about? I am perfectly well. Stop plotting behind my back and get back to work.",
+      "voice": {
+        "engine": "bark",
+        "voice": "models/bark/en_speaker_8.npz"
+      },
+        "lipsync_engine": "wav2lip"
+    }
+  ],
+  "subtitles": false,
+  "watermark": ""
+}
