@@ -9,7 +9,7 @@
     {
       "id": "s3",
       "mode": "talking_head",
-      "portrait": "examples/pol/assets/jdvance0.jpg",
+      "portrait": "examples/pol/assets/jdvance3c.jpg",
       "script_text": "President Trump's health is failing and God forbid if somethng happens to him, I am ready to takeover.",
       "voice": {
         "engine": "bark",
@@ -20,7 +20,7 @@
     {
       "id": "s4",
       "mode": "talking_head",
-      "portrait": "examples/pol/assets/donald5c.jpg",
+      "portrait": "examples/pol/assets/donald6c.jpg",
       "script_text": "JD, what are you talking about? I am perfectly well. Stop plotting behind my back and get back to work.",
       "voice": {
         "engine": "bark",
