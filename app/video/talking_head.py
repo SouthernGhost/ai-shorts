@@ -48,8 +48,13 @@ def generate_talking_head(portrait_path, audio_wav, out_mp4, engine="wav2lip", t
                 "python", os.path.join(repo, "inference.py"),
                 "--source_image", portrait_path,
                 "--driven_audio", audio_wav,
+                "--checkpoint_dir", "SadTalker/checkpoints/",
+                "--bfm_folder", "SadTalker/checkpoints/BFM_Fitting",
                 "--result_dir", os.path.dirname(out_mp4),
-                "--enhancer", "gfpgan"
+                "--enhancer", "gfpgan",
+                "--still",
+                "--preprocess", "full",
+                "--expression_scale", "0.7"
             ]
             subprocess.run(cmd, check=True)
             
