@@ -27,12 +27,12 @@ def synthesize(text:str, out_wav:str, engine:str="piper", voice:str=None):
     if engine.lower() == 'bark':
         bark_bin = 'bark'
         env = os.environ.copy()
-        env['SUNO_OFFLOAD_CPU'] = "True"
+        env['SUNO_OFFLOAD_CPU'] = "False"
         env['SUNO_USE_SMALL_MODELS'] = "True"
 
         if bark_bin:
             cmd = [
-                "poetry", "run", "python", "-m", bark_bin,
+                    sys.executable, "-m", bark_bin,
                 "--text", text,
                 "--output_filename", out_wav,
                 "--history_prompt", voice

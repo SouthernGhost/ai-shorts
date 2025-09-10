@@ -1,4 +1,4 @@
-import os, shutil, subprocess
+import os, sys, shutil, subprocess
 
 def generate_talking_head(portrait_path, audio_wav, out_mp4, engine="wav2lip", target_width=960, target_height=540):
     """
@@ -14,8 +14,7 @@ def generate_talking_head(portrait_path, audio_wav, out_mp4, engine="wav2lip", t
             
             # Example call (this depends on your local Wav2Lip setup)
             # Adjust paths/flags to match your cloned repo.
-            cmd = ["poetry", "run",
-                "python", os.path.join(repo, "inference.py"),
+            cmd = [sys.executable, os.path.join(repo, "inference.py"),
                 "--checkpoint_path", os.path.join(repo, "checkpoints", "Wav2Lip-SD-GAN.pt"),
                 "--face", portrait_path,
                 "--audio", audio_wav,
@@ -44,12 +43,11 @@ def generate_talking_head(portrait_path, audio_wav, out_mp4, engine="wav2lip", t
             raw_output = out_mp4.replace('.mp4', '_raw.mp4')
             
             # Example call (adjust to your local SadTalker CLI)
-            cmd = ["poetry", "run",
-                "python", os.path.join(repo, "inference.py"),
+            cmd = [sys.executable, os.path.join(repo, "inference.py"),
                 "--source_image", portrait_path,
                 "--driven_audio", audio_wav,
-                "--checkpoint_dir", "SadTalker/checkpoints/",
-                "--bfm_folder", "SadTalker/checkpoints/BFM_Fitting",
+                "--checkpoint_dir", "third_party/SadTalker/checkpoints/",
+                "--bfm_folder", "third_party/SadTalker/checkpoints/BFM_Fitting",
                 "--result_dir", os.path.dirname(out_mp4),
                 "--enhancer", "gfpgan",
                 "--still",
