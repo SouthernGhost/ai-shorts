@@ -12,8 +12,8 @@
       "portrait": "examples/pol/assets/donald6c.jpg",
       "script_text": "JD, what are you talking about? I am perfectly well. Stop plotting behind my back and get back to work.",
       "voice": {
-        "engine": "piper",
-        "voice": "models/piper/en_US-ryan-high.onnx"
+        "engine": "bark",
+        "voice": "models/bark/en_speaker_8.npz"
       },
         "lipsync_engine": "sadtalker"
     }

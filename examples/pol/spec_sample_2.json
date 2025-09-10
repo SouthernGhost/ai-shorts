@@ -9,13 +9,13 @@
     {
       "id": "s3",
       "mode": "talking_head",
-      "portrait": "examples/pol/assets/jdvance3c.jpg",
+      "portrait": "examples/pol/assets/jdvance4.jpg",
       "script_text": "President Trump's health is failing and God forbid if somethng happens to him, I am ready to takeover.",
       "voice": {
-        "engine": "piper",
-        "voice": "models/piper/en_US-ryan-high.onnx"
+        "engine": "bark",
+        "voice": "models/bark/en_speaker_6.npz"
       },
-        "lipsync_engine": "wav2lip"
+        "lipsync_engine": "sadtalker"
     },
     {
       "id": "s4",
@@ -23,8 +23,8 @@
       "portrait": "examples/pol/assets/donald6c.jpg",
       "script_text": "JD, what are you talking about? I am perfectly well. Stop plotting behind my back and get back to work.",
       "voice": {
-        "engine": "piper",
-        "voice": "models/piper/en_US-ryan-high.onnx"
+        "engine": "bark",
+        "voice": "models/piper/en_speaker_8.npz"
       },
         "lipsync_engine": "sadtalker"
     }
