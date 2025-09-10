@@ -2,6 +2,7 @@ import argparse, pathlib, os
 from app.pipeline import run_project
 from app.utils.io import ensure_dir
 
+os.environ['SADTALKER_PATH'] = os.path.dirname(os.path.abspath(__file__)) + "/third_party/SadTalker"
 
 def main():
     ap = argparse.ArgumentParser()
