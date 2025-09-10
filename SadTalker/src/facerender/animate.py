@@ -154,7 +154,7 @@ class AnimateFromCoeff():
 
         return checkpoint['epoch']
 
-    def generate(self, x, video_save_dir, pic_path, crop_info, enhancer=None, background_enhancer=None, preprocess='crop', img_size=256):
+    def generate(self, x, video_save_dir, pic_path, crop_info, enhancer=None, background_enhancer=None, preprocess='crop', img_size=256, fps=25):
 
         source_image=x['source_image'].type(torch.FloatTensor)
         source_semantics=x['source_semantics'].type(torch.FloatTensor)
@@ -202,7 +202,7 @@ class AnimateFromCoeff():
         video_name = x['video_name']  + '.mp4'
         path = os.path.join(video_save_dir, 'temp_'+video_name)
         
-        writer = imageio.get_writer(path, fps=float(25), codec='libx264', macro_block_size=1, format='FFMPEG')
+        writer = imageio.get_writer(path, fps=float(fps), codec='libx264', macro_block_size=1, format='FFMPEG')
         for frame in result:
             writer.append_data(frame)
         writer.close()
@@ -244,13 +244,13 @@ class AnimateFromCoeff():
 
             try:
                 enhanced_images_gen_with_len = enhancer_generator_with_len(full_video_path, method=enhancer, bg_upsampler=background_enhancer)
-                writer = imageio.get_writer(enhanced_path, fps=float(25), codec='libx264', macro_block_size=1, format='FFMPEG')
+                writer = imageio.get_writer(enhanced_path, fps=float(fps), codec='libx264', macro_block_size=1, format='FFMPEG')
                 for frame in enhanced_images_gen_with_len:
                     writer.append_data(frame)
                 writer.close()
             except:
                 enhanced_images_gen_with_len = enhancer_list(full_video_path, method=enhancer, bg_upsampler=background_enhancer)
-                writer = imageio.get_writer(enhanced_path, fps=float(25), codec='libx264', macro_block_size=1, format='FFMPEG')
+                writer = imageio.get_writer(enhanced_path, fps=float(fps), codec='libx264', macro_block_size=1, format='FFMPEG')
                 for frame in enhanced_images_gen_with_len:
                     writer.append_data(frame)
                 writer.close()
