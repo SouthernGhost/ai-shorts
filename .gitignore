@@ -9,3 +9,4 @@ runs/
 *.lock
 models/piper/*.onnx
 tests/
+SimSwap/
