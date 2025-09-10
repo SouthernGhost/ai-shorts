@@ -24,7 +24,7 @@
       "script_text": "JD, what are you talking about? I am perfectly well. Stop plotting behind my back and get back to work.",
       "voice": {
         "engine": "bark",
-        "voice": "models/piper/en_speaker_8.npz"
+        "voice": "models/bark/en_speaker_8.npz"
       },
         "lipsync_engine": "sadtalker"
     }
