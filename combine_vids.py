@@ -89,6 +89,11 @@ def side_by_side_videos(video1_path, video2_path, output_path):
         print(f"Padding/Processing video 2: {video2_path}")
         _pad_video(video2_path, max_duration, temp_video2_padded)
 
+        # Ensure the output directory exists
+        output_dir = os.path.dirname(output_path)
+        if output_dir and not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+
         # Combine padded videos side-by-side with merged audio
         print("Combining videos side by side...")
         cmd = [
@@ -105,12 +110,12 @@ def side_by_side_videos(video1_path, video2_path, output_path):
             "-shortest", # Ensure output doesn't exceed padded audio duration
             output_path
         ]
-        subprocess.run(cmd, check=True)
+        subprocess.run(cmd, check=True, capture_output=True, text=True)
         print(f"Successfully created side-by-side video: {output_path}")
 
     except subprocess.CalledProcessError as e:
         print(f"Error during video processing: {e}")
-        print(f"FFmpeg stderr: {e.stderr.decode()}")
+        print(f"FFmpeg stderr: {e.stderr}") # e.stderr is already decoded because of text=True
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
     finally:
@@ -128,4 +133,4 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    side_by_side_videos(args.video1_path, args.video2_path, args.output_path)
+    side_by_side_videos(args.vid1, args.vid2, args.output)
