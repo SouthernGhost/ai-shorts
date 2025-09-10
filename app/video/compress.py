@@ -33,7 +33,7 @@ def normalize_and_compress(in_mp4, out_mp4, width=960, height=540, fps=25, targe
             "-vf", f"scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height}",
             "-r", str(fps),
             "-c:v", "libx264", "-b:v", f"{b_v}k",
-            "-pass", "2", "-c:a", "aac", "-b:a", "64k", "-ac", "1",
+            "-pass", "2", "-c:a", "aac", "-b:a", "64k", "-ac", "1", "-ar", "16000",
             "-movflags", "+faststart", out_mp4
         ]
         subprocess.run(cmd2, check=True)
@@ -44,7 +44,7 @@ def normalize_and_compress(in_mp4, out_mp4, width=960, height=540, fps=25, targe
             "-r", str(fps),
             "-c:v", "libx264", "-preset", "veryfast", "-crf", "30",
             "-profile:v", "high", "-pix_fmt", "yuv420p",
-            "-c:a", "aac", "-b:a", "64k", "-ac", "1",
+            "-c:a", "aac", "-b:a", "64k", "-ac", "1", "-ar", "16000",
             "-movflags", "+faststart", out_mp4
         ]
         subprocess.run(cmd, check=True)
