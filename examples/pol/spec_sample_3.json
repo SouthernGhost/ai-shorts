@@ -1,0 +1,23 @@
+{
+  "project_title": "demo_short",
+  "output": {
+    "fps": 25,
+    "resolution": "540x960",
+    "target_size_mb": 3
+  },
+  "scenes": [
+    {
+      "id": "s3",
+      "mode": "talking_head",
+      "portrait": "examples/pol/assets/jdvance3c.jpg",
+      "script_text": "President Trump's health is failing and God forbid if somethng happens to him, I am ready to takeover.",
+      "voice": {
+        "engine": "piper",
+        "voice": "models/piper/en_US-ryan-high.onnx"
+      },
+        "lipsync_engine": "sadtalker"
+    }
+  ],
+  "subtitles": false,
+  "watermark": ""
+}
