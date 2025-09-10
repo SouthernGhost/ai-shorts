@@ -54,7 +54,7 @@ def generate_talking_head(portrait_path, audio_wav, out_mp4, engine="wav2lip", t
                 "--enhancer", "gfpgan",
                 "--still",
                 "--preprocess", "full",
-                "--expression_scale", "0.8"
+                "--expression_scale", "1.0"
             ]
             subprocess.run(cmd, check=True)
             
