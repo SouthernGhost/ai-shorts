@@ -276,7 +276,6 @@ dependencies:
       - resampy==0.3.1
       - scikit-image==0.19.3
       - scipy==1.10.1
-      - suno-bark==0.0.1a0
       - tokenizers==0.22.0
       - torchaudio==2.4.1
       - torchvision==0.19.1
