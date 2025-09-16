@@ -35,3 +35,4 @@ Dockerfile
 start_docker.sh
 start.sh
 checkpoints
+*.ini
