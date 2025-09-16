@@ -5,6 +5,7 @@ from app.video.montage import ken_burns_clip
 from app.video.talking_head import generate_talking_head
 from app.video.assemble import write_srt, burn_subtitles_and_watermark, concat_videos_ffmpeg
 from app.video.compress import normalize_and_compress
+from app.video.face_swap import face_swap
 
 def run_project(spec_path, out_path, workdir):
     spec = load_spec(spec_path)
@@ -37,6 +38,9 @@ def run_project(spec_path, out_path, workdir):
         elif mode == "talking_head":
             portrait = scene["portrait"]
             engine = scene.get("lipsync_engine", "wav2lip")
+            if scene.get("face_swap")==True:
+                target = scene.get("target")
+                portrait = face_swap(portrait, target)
             generate_talking_head(portrait, audio_wav, raw_mp4, engine=engine, target_width=width, target_height=height)
         else:
             raise ValueError(f"Unknown scene mode: {mode}")

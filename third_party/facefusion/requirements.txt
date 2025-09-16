@@ -1,0 +1,9 @@
+gradio-rangeslider==0.0.8
+gradio==5.42.0
+numpy==1.26.4
+onnx==1.19.0
+onnxruntime==1.22.1
+opencv-python==4.9.0.80
+psutil==7.0.0
+tqdm==4.67.1
+scipy==1.10.1

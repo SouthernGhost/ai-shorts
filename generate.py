@@ -3,6 +3,7 @@ from app.pipeline import run_project
 from app.utils.io import ensure_dir
 
 os.environ['SADTALKER_PATH'] = os.path.dirname(os.path.abspath(__file__)) + "/third_party/SadTalker"
+os.environ['FACEFUSION_PATH'] = os.path.dirname(os.path.abspath(__file__)) + "/third_party/facefusion"
 
 def main():
     ap = argparse.ArgumentParser()
