@@ -7,6 +7,19 @@
   },
   "scenes": [
     {
+      "id": "s3",
+      "mode": "talking_head",
+      "portrait": "examples/pol/assets/donald8.jpg",
+      "target": "examples/pol/assets/jdvance4.jpg",
+      "face_swap": false,
+      "script_text": "Hello, my name is Donald Trump and I am currently the forty seventh president of the united states of america.",
+      "voice": {
+        "engine": "bark",
+        "voice": "models/bark/en_speaker_8.npz"
+      },
+        "lipsync_engine": "sadtalker"
+    },
+    {
       "id": "s4",
       "mode": "talking_head",
       "portrait": "examples/pol/assets/donald8.jpg",

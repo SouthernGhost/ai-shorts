@@ -1,0 +1,25 @@
+{
+    "project_title": "demo_short",
+    "output": {
+      "fps": 25,
+      "resolution": "720x960",
+      "target_size_mb": 3
+    },
+    "scenes": [
+      {
+        "id": "s4",
+        "mode": "talking_head",
+        "portrait": "examples/pol/assets/donald8.jpg",
+        "target": "examples/pol/assets/jdvance4.jpg",
+        "face_swap": true,
+        "script_text": "JD, what are you talking about? I am perfectly well. Stop plotting behind my back and get back to work.",
+        "voice": {
+          "engine": "bark",
+          "voice": "models/bark/en_speaker_8.npz"
+        },
+          "lipsync_engine": "sadtalker"
+      }
+    ],
+    "subtitles": false,
+    "watermark": ""
+  }
