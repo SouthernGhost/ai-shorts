@@ -21,18 +21,20 @@ def normalize_and_compress(in_mp4, out_mp4, width=960, height=540, fps=25, targe
         # Pass 1
         cmd1 = [
             "ffmpeg", "-y", "-i", in_mp4,
-            "-vf", f"scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height}",
+            "-vf", f"scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height},pad=width=ceil(iw/2)*2:height=ceil(ih/2)*2",
             "-r", str(fps),
             "-c:v", "libx264", "-b:v", f"{b_v}k",
+            "-pix_fmt", "yuv420p",
             "-pass", "1", "-an", "-f", "mp4", os.devnull
         ]
         subprocess.run(cmd1, check=True)
         # Pass 2
         cmd2 = [
             "ffmpeg", "-y", "-i", in_mp4,
-            "-vf", f"scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height}",
+            "-vf", f"scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height},pad=width=ceil(iw/2)*2:height=ceil(ih/2)*2",
             "-r", str(fps),
             "-c:v", "libx264", "-b:v", f"{b_v}k",
+            "-pix_fmt", "yuv420p",
             "-pass", "2", "-c:a", "aac", "-b:a", "64k", "-ac", "1", "-ar", "16000",
             "-movflags", "+faststart", out_mp4
         ]
@@ -40,7 +42,7 @@ def normalize_and_compress(in_mp4, out_mp4, width=960, height=540, fps=25, targe
     else:
         cmd = [
             "ffmpeg", "-y", "-i", in_mp4,
-            "-vf", f"scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height}",
+            "-vf", f"scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height},pad=width=ceil(iw/2)*2:height=ceil(ih/2)*2",
             "-r", str(fps),
             "-c:v", "libx264", "-preset", "veryfast", "-crf", "30",
             "-profile:v", "high", "-pix_fmt", "yuv420p",

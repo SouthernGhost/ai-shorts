@@ -204,6 +204,11 @@ class AnimateFromCoeff():
         
         writer = imageio.get_writer(path, fps=float(fps), codec='libx264', macro_block_size=1, format='FFMPEG')
         for frame in result:
+            h, w, _ = frame.shape
+            new_w = w if w % 2 == 0 else w - 1
+            new_h = h if h % 2 == 0 else h - 1
+            if (new_w, new_h) != (w, h):
+                frame = frame[:new_h, :new_w]  # crop to even size
             writer.append_data(frame)
         writer.close()
 

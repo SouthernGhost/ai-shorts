@@ -25,8 +25,8 @@ def generate_talking_head(portrait_path, audio_wav, out_mp4, engine="wav2lip", t
             # Post-process to standardize resolution and prevent stretching
             subprocess.run([
                 "ffmpeg", "-y", "-i", raw_output,
-                "-vf", f"scale={target_width}:{target_height}:force_original_aspect_ratio=increase,crop={target_width}:{target_height}",
-                "-c:v", "libx264", "-c:a", "aac",
+                "-vf", f"scale={target_width}:{target_height}:force_original_aspect_ratio=increase,crop={target_width}:{target_height},pad=width=ceil(iw/2)*2:height=ceil(ih/2)*2",
+                "-c:v", "libx264", "-pix_fmt", "yuv420p", "-c:a", "aac",
                 out_mp4
             ], check=True)
             
@@ -69,8 +69,8 @@ def generate_talking_head(portrait_path, audio_wav, out_mp4, engine="wav2lip", t
             if os.path.exists(raw_output):
                 subprocess.run([
                     "ffmpeg", "-y", "-i", raw_output,
-                    "-vf", f"scale={target_width}:{target_height}:force_original_aspect_ratio=increase,crop={target_width}:{target_height}",
-                    "-c:v", "libx264", "-c:a", "aac",
+                    "-vf", f"scale={target_width}:{target_height}:force_original_aspect_ratio=increase,crop={target_width}:{target_height},pad=width=ceil(iw/2)*2:height=ceil(ih/2)*2",
+                    "-c:v", "libx264", "-pix_fmt", "yuv420p", "-c:a", "aac",
                     out_mp4
                 ], check=True)
                 

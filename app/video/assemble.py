@@ -72,8 +72,9 @@ def concat_videos_ffmpeg(mp4_list, out_path, target_width=960, target_height=540
             subprocess.run([
                 "ffmpeg", "-y", "-i", video,
                 "-f", "lavfi", "-i", f"anullsrc=channel_layout=stereo:sample_rate={standard_sample_rate}:duration={duration}",
-                "-vf", f"scale={target_width}:{target_height}:force_original_aspect_ratio=increase,crop={target_width}:{target_height}",
+                "-vf", f"scale={target_width}:{target_height}:force_original_aspect_ratio=increase,crop={target_width}:{target_height},pad=width=ceil(iw/2)*2:height=ceil(ih/2)*2",
                 "-c:v", standard_video_codec, "-r", standard_framerate,
+                "-pix_fmt", "yuv420p",
                 "-c:a", standard_audio_codec, "-ar", standard_sample_rate,
                 "-vsync", "cfr",
                 "-map", "0:v", "-map", "1:a",
@@ -85,8 +86,9 @@ def concat_videos_ffmpeg(mp4_list, out_path, target_width=960, target_height=540
             temp_video = tempfile.NamedTemporaryFile(delete=False, suffix=".mp4").name
             subprocess.run([
                 "ffmpeg", "-y", "-i", video,
-                "-vf", f"scale={target_width}:{target_height}:force_original_aspect_ratio=increase,crop={target_width}:{target_height}",
+                "-vf", f"scale={target_width}:{target_height}:force_original_aspect_ratio=increase,crop={target_width}:{target_height},pad=width=ceil(iw/2)*2:height=ceil(ih/2)*2",
                 "-c:v", standard_video_codec, "-r", standard_framerate,
+                "-pix_fmt", "yuv420p",
                 "-c:a", standard_audio_codec, "-ar", standard_sample_rate,
                 "-vsync", "cfr",
                 temp_video
@@ -102,7 +104,7 @@ def concat_videos_ffmpeg(mp4_list, out_path, target_width=960, target_height=540
     # Concatenate all videos
     subprocess.run([
         "ffmpeg", "-y", "-f", "concat", "-safe", "0",
-        "-i", list_path, "-c:v", "libx264", "-c:a", "aac",
+        "-i", list_path, "-c:v", "libx264", "-pix_fmt", "yuv420p", "-c:a", "aac",
         "-movflags", "faststart", out_path
     ], check=True)
 
@@ -125,6 +127,6 @@ def burn_subtitles_and_watermark(in_mp4, srt_path, watermark_text, out_mp4):
         # bottom-right drawtext
         vf.append(f"drawtext=text='{watermark_text}':x=w-tw-20:y=h-th-10:fontcolor=white:alpha=0.6:fontsize=20:box=1:boxcolor=black@0.3:boxborderw=5")
     filter_str = ",".join(vf) if vf else "null"
-    cmd = ["ffmpeg", "-y", "-i", in_mp4, "-vf", filter_str, "-c:a", "copy", out_mp4]
+    cmd = ["ffmpeg", "-y", "-i", in_mp4, "-vf", filter_str + ",pad=width=ceil(iw/2)*2:height=ceil(ih/2)*2", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-c:a", "aac", out_mp4]
     subprocess.run(cmd, check=True)
     return out_mp4

@@ -1,5 +1,6 @@
 import os
 import sys
+import datetime
 import subprocess
 import pathlib
 
@@ -19,7 +20,8 @@ def face_swap(portrait: str, target: str):
 
     # Create output filename from portrait filename only (not full path)
     portrait_name = pathlib.Path(portrait).stem
-    output_path = str(project_root / f"examples/face_swaps/{portrait_name}_swap.jpg")
+    dt = datetime.datetime.now().strftime("%d-%m-%Y_%H-%M-%S")
+    output_path = str(project_root / f"examples/face_swaps/{portrait_name}_{dt}.jpg")
     
     # Ensure output directory exists
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
