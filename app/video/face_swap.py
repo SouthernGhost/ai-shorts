@@ -26,15 +26,20 @@ def face_swap(portrait: str, target: str):
     
     repo = os.getenv('FACEFUSION_PATH')
     cmd = [sys.executable,
-                os.path.join(repo, "facefusion.py"),
+                "facefusion.py",
                 "headless-run",
                 "--config-path", os.path.join(repo, "facefusion.ini"),
                 "--jobs-path", os.path.join(repo, ".jobs"),
+                "--processors", "face_swapper", "face_enhancer",
+                "--face-swapper-model", "inswapper_128_fp16",
+                "--face-swapper-weight", "0.3",
+                "--face-enhancer-model", "gfpgan_1.4",
                 "-s", portrait_abs,  # Use absolute path
                 "-t", target_abs,    # Use absolute path
                 "--output-path", output_path]
     try:
-        result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+        cwd = str(project_root / "third_party/facefusion")
+        subprocess.run(cmd, cwd=cwd)
         
     except subprocess.CalledProcessError as e:
         print(f"Error occurred: {e}")
